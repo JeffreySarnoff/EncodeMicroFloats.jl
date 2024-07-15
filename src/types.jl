@@ -1,8 +1,8 @@
 # abstract types
 abstract type AbstractBinaryFloat{Bits, SigBits} <: AbstractFloat end
 
-abstract type AkoUnsignedFloat{Bits, SigBits} <: AbstractBinaryFloat{Bits, SigBits}t end
-abstract type AkoSignedFloat{Bits, SigBits} <: AbstractBinaryFloat{Bits, SigBits}t end
+abstract type AkoUnsignedFloat{Bits, SigBits} <: AbstractBinaryFloat{Bits, SigBits} end
+abstract type AkoSignedFloat{Bits, SigBits} <: AbstractBinaryFloat{Bits, SigBits} end
 
 # const concrete types
 
