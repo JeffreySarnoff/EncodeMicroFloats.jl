@@ -15,19 +15,21 @@ const μValue  = Base.Float32
 # concrete types
 
 mutable struct SimpleFloat{Bits, SigBits} <: AbstractBinaryFloat{Bits, SigBits}
-    encodings::SizedVector{2^Bits, μEncode}
-    values::SizedVector{2^Bits, μValue}
-
-    function SimpleFloat{Bits, SigBits}()
-        n = 2^Bits
-        encodings = Tuple(map(μEncode, 1:n)) # final
-        values = zeros(μValue, n)
-        for (idx, encoded) in enumerate(encodings)
-            values[idx] = evaluate(Bits, SigBits, encoded)
-        end
-        SimpleFloat{Bits, SigBits}(encodings, Tuple(values))
-    end
+    encodings::SizedVector{Bits, μEncode}
+    values::SizedVector{Bits, μValue}
 end
+
+function SimpleFloat(Bits, SigBits)
+    n = 2^Bits
+    encodings = Tuple(map(μEncode, 1:n)) # final
+    values = zeros(μValue, n)
+    for (idx, encoded) in enumerate(encodings)
+        values[idx] = decode_value(Bits, SigBits, encoded)
+    end
+    SimpleFloat{Bits, SigBits}(encodings, Tuple(values))
+end
+
+decode_value(Bits, SigBits, encoded) = 0x01
 
 n_values(x) = x >= 0 ? 2^x : 1//2^x
 
