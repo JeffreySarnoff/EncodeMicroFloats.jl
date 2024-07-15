@@ -19,22 +19,16 @@ mutable struct SimpleFloat{Bits, SigBits} <: AbstractBinaryFloat{Bits, SigBits}
     values::SizedVector{Bits, μValue}
 end
 
-function SimpleFloat(Bits, SigBits)
-    n = 2^Bits
-    encodings = Tuple(map(μEncode, 1:n)) # final
+function SimpleFloat(bitwidth, precision)
+    n = 2^bitwidth
+    encodings = map(μEncode, 1:nvalues(Bits))
     values = zeros(μValue, n)
     for (idx, encoded) in enumerate(encodings)
         values[idx] = decode_value(Bits, SigBits, encoded)
     end
-    SimpleFloat{Bits, SigBits}(encodings, Tuple(values))
+    SimpleFloat{bitwidth, precision}(Tuple(encodings), Tuple(values))
 end
 
 decode_value(Bits, SigBits, encoded) = 0x01
 
 n_values(x) = x >= 0 ? 2^x : 1//2^x
-
-function SimpleFloat(Bits, SigBits)
-    encodings = map(μEncode, 1:n_values(Bits))
-    values = map(μFloatValue, 1:n_values(Bits))
-    SimpleFloat{Bits, SigBits}(encodings, values)
-end
