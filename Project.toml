@@ -3,5 +3,15 @@ author = "Jeffrey Sarnoff <jeffrey.sarnoff@ieee.org>"
 uuid = "0d57e17c-ad19-4b3d-8496-dea03e56ae7c"
 version = "0.1.0"
 
+[deps]
+StaticArraysCore = "1e83bf80-4336-4d27-bf5d-d5a4f845583c"
+
 [compat]
+StaticArraysCore = "1.4"
 julia = "1.10"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
