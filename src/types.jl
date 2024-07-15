@@ -31,4 +31,3 @@ end
 
 decode_value(Bits, SigBits, encoded) = 0x01
 
-n_values(x) = x >= 0 ? 2^x : 1//2^x

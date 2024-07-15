@@ -1,1 +1,1 @@
-n_values(nbits) = 2^nbits
+nvalues(nbits) = 2^nbits
