@@ -1,0 +1,7 @@
+name = "EncodeMicroFloats"
+author = "Jeffrey Sarnoff <jeffrey.sarnoff@ieee.org>"
+uuid = "0d57e17c-ad19-4b3d-8496-dea03e56ae7c"
+version = "0.1.0"
+
+[compat]
+julia = "1.10"
